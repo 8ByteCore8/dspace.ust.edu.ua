@@ -1,0 +1,28 @@
+<div class="background-image-container">
+  <div class="container">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="d-flex flex-wrap">
+        <div>
+          <h1 class="display-3">CRUST</h1>
+          <p class="lead">Common Repository of the University of Science and Technologies</p>
+        </div>
+      </div>
+      <div [innerHTML]="'home-news.banner' | translate"></div>
+      <p>
+        {{ 'home-news.for-contacts' | translate}} <a href="mailto:repository@ust.edu.ua">repository@ust.edu.ua</a>
+      </p>
+      <p>
+        {{ 'home-news.refers-to' | translate}} <a href="https://ust.edu.ua/">{{ 'home-news.university' | translate}}</a>
+      </p>
+    </div>
+  </div>
+  <picture class="background-image">
+    <source type="image/webp"
+      srcset="assets/dspace/images/banner.webp 2000w, assets/dspace/images/banner-half.webp 1200w, assets/dspace/images/banner-tall.webp 768w">
+    <source type="image/jpg"
+      srcset="assets/dspace/images/banner.jpg 2000w, assets/dspace/images/banner-half.jpg 1200w, assets/dspace/images/banner-tall.jpg 768w">
+    <img alt=""
+      [src]="'assets/dspace/images/banner.jpg'" /><!-- without the []="''" Firefox downloads both the fallback and the resolved image -->
+  </picture>
+  <small class="credits">Photo by <a href="https://www.pexels.com/@inspiredimages">@inspiredimages</a></small>
+</div>

@@ -1,0 +1,24 @@
+<nav [ngClass]="{'open': !(menuCollapsed | async)}" [@slideMobileNav]="!(windowService.isXsOrSm() | async) ? 'default' : ((menuCollapsed | async) ? 'collapsed' : 'expanded')"
+  class="navbar navbar-expand-md navbar-light p-0 navbar-container" role="navigation" [attr.aria-label]="'nav.main.description' | translate">
+  <div class="navbar-inner-container w-100 h-100" [class.container]="!(isXsOrSm$ | async)">
+    <a class="navbar-brand my-2" routerLink="/home">
+      <img src="data:image/webp;base64,UklGRnQDAABXRUJQVlA4WAoAAAAQAAAAJwAAJAAAQUxQSJMBAAABkKtt2yFJb2NQV7tPYGxERmgzUjqZvfaewiBdI7KjmWii6XRtozmovv76FtU/6ggiYgLAqdUdvfty34hsnyi2QaHWffMbI1P2bNItr/JKnHj1jayg2y7DOfKSBJMvQluXFupcIunzEZIbfjTu53LMJ0j6wZNmB8dImFT+OOROUfmc1OqrAZPMi6Sarbn/64gpo+RRO5BxhSz4sw2o+mQFehrACrOEPo67JBj/LYfuuV8JhLqad+R8b0rw7Q8DJZfCMowjBt/HfABa3cT5K5thAbrF+L6Vw9zu6nsj8CzKZ0ylADBl8EWf8dGbPpctRfk3PnZLgMKbF85N1GkA8j/yGUcMAdPwpRJgeJ8v0fRdBtFOc1eI+F+578mh33ESvItxXY4wW0HgqSU+VQFtP61wJQOwH02qi3UAgHuNKbuY+R8Cq7qi55Uwdx/6oSQ8gtSO5icH8hLzDg7AP/4oLCkynw5BV93Cpa3Qi6TIyxEnJNrdwawNnSt+pRLS3ZPPmBn7drNbg0Jb8cntiLH/8u7ROg2cAFZQOCC6AQAAcAwAnQEqKAAlAD6dQJxKrCOVlxoEzFgJxLYAWI97QPfO/yA9gSo/yn7wfjnzSJzq3Pql28HmA/aL9Sfeq0wD0AOlGIkkYnrsLWNnh1g58wqEKIEPZPNpvXXZe/gVyUR3UCSJ9tki61h01V4AAP0fij7spom5zhCNh34GX4aID+SUBZYTMlzztc9mzX/7MxNUG2O61QDYsWHHeQdICPSecszTcrSW/1J81YArVtIddybuMLU05QK5YiGX8m7YOmBv3HmwwihFIjN/UtU/bP8AaY8irg59ml77YwhO1uSzT2xdBaB+nC3h6xGVqjkNJBhyxTU4x59+4vvqhMsm3k+v2kb4uagf0KODsmP6hLLDKPREmkf+9RZRofSITjLoKDmnxUT0ntWim1a/m0oGXQHI5xOmeXY1ph+9qMpH6vgU8/CYSyLfnaSuz2y4u7bEsFMvpBzT6qpc0PMhbDlFXpUjUJwyaCjMesuKzP+qhapPvRArJV4YydaWGzjVAz4F+7e07fBASWYE4dBM77DLfIlX2cPkxhS7UXS5h/4kPJ+9pIzlebyqv/cevzxMf+slv6uXVFD3zKcvgKaAAA==" [attr.alt]="'menu.header.image.logo' | translate" />
+    </a>
+
+    <div id="collapsingNav" class="w-100 h-100">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 h-100">
+        <li *ngIf="(isXsOrSm$ | async) && (isAuthenticated$ | async)">
+            <ds-user-menu [inExpandableNavbar]="true"></ds-user-menu>
+        </li>
+        <ng-container *ngFor="let section of (sections | async)">
+          <ng-container *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
+        </ng-container>
+      </ul>
+    </div>
+    <ds-search-navbar class="navbar-collapsed"></ds-search-navbar>
+    <ds-lang-switch class="navbar-collapsed"></ds-lang-switch>
+    <ds-context-help-toggle class="navbar-collapsed"></ds-context-help-toggle>
+    <ds-themed-auth-nav-menu class="navbar-collapsed"></ds-themed-auth-nav-menu>
+    <ds-impersonate-navbar class="navbar-collapsed"></ds-impersonate-navbar>
+  </div>
+</nav>
